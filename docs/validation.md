@@ -150,6 +150,23 @@ assembly error for mozglue. Re-downloading the pinned browser reproduced it.
 This is recorded as an environment failure, not skipped or reported as a pass.
 Firefox remains required in CI.
 
+### Linux CI and reviewed references
+
+The [Linux bootstrap verification](https://gitlab.com/Deamenophobia/retro-workbench-ui/-/pipelines/2994404566)
+passed formatting, strict types, boundary/cycle checks, all 18 unit tests, the
+production build and all 132 browser behavior/accessibility tests across Chromium
+desktop/narrow, Firefox and WebKit. Its two visual tests failed because the Linux
+reference images did not yet exist; no behavior test failed.
+
+The separate explicit capture job produced all 14 Linux references. Each was
+visually reviewed for legible text, layout, focus, overlays and narrow scrolling,
+then committed under `tests/visual-baselines/linux`. This is separate from the
+14 reviewed Windows references. The temporary capture-log transport was removed;
+the optional capture job retains ordinary downloadable artifacts. Normal CI never
+updates expected images and must compare successfully against these references.
+See the [latest pipelines](https://gitlab.com/Deamenophobia/retro-workbench-ui/-/pipelines)
+for comparison results tied to each commit.
+
 ## Limits of this evidence
 
 Physical touch devices and a completed screen-reader session are not covered.
@@ -163,6 +180,6 @@ authentication, backend, large-table virtualization, cross-tab synchronization o
 offline caching. Page-local unsaved drafts reset on navigation, as documented in
 the customization guide.
 
-GitLab CI is configured to run the same complete check on pushes. Consult the
-repository's pipeline page for remote execution status; the results above are the
-completed local checks.
+GitLab CI runs the same complete check on pushes. The tables distinguish local
+Windows results from Linux CI evidence; a browser startup failure is never counted
+as a successful test or silently removed from the required matrix.
