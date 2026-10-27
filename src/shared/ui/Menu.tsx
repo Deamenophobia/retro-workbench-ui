@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
 
 export type MenuItem =
-  { label: string; href: string } | { label: string; onSelect: () => void; disabled?: boolean };
+  | { label: string; href: string }
+  | { label: string; onSelect: () => void; disabled?: boolean }
+  | { label: string; disabled: true; onSelect?: never };
 
 /** Native disclosure navigation: Tab/Shift+Tab, Enter/Space, Escape and outside dismissal. */
 export function Menu({ label, items }: { label: string; items: readonly MenuItem[] }) {
@@ -45,7 +47,7 @@ export function Menu({ label, items }: { label: string; items: readonly MenuItem
               type="button"
               disabled={item.disabled}
               onClick={() => {
-                item.onSelect();
+                item.onSelect?.();
                 close();
                 ref.current?.querySelector("summary")?.focus();
               }}

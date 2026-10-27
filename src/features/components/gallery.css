@@ -1,0 +1,52 @@
+.gallery-stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-5);
+}
+.gallery-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: var(--space-5);
+}
+.gallery-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.gallery-metric {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  font-size: var(--text-title);
+}
+.gallery-metric span {
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+.gallery-card-mark {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  font-size: var(--text-title);
+  color: var(--accent);
+}
+.gallery-card-mark span {
+  font: var(--text-xs) var(--font-mono);
+  letter-spacing: 1px;
+}
+.gallery-note {
+  margin-top: var(--space-4);
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+.gallery-stack .list-content > .button {
+  padding: 0;
+  white-space: normal;
+  text-align: left;
+  justify-content: start;
+}
+.gallery-stack .card-footer > .pagination {
+  width: 100%;
+}

@@ -42,6 +42,9 @@ No backend, secrets, or environment variables are required.
 - Semantic theme tokens separated from component styles and page behavior.
 - A chart gallery with reusable SVG line, bar, and donut charts, interactive line
   legends, keyboard point inspection, and accessible data tables. No chart library.
+- A Components gallery with lists, composable cards, avatars, pagination, choice
+  controls, breadcrumbs, accordions, dialogs, drawers, popovers, tooltips, progress,
+  skeletons and dismissible notifications. Records demonstrates real local paging.
 - Explicit integration interfaces for records and browser settings.
 - Enforced dependency directions, cycle detection, strict types, behavioral tests,
   and GitLab CI testing the production build at desktop and narrow widths.
@@ -66,6 +69,8 @@ Read [architecture and ownership](docs/architecture.md), the
 [customization guide](docs/customization.md), and the
 [component reference](docs/components.md) before extending the starter.
 For chart props and limits, see [charts and graphs](docs/charts.md).
+For reusable component examples, see [UI recipes](docs/ui-recipes.md) and the
+[expansion scope and ownership](docs/ui-expansion.md).
 
 ## Verify
 

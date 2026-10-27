@@ -45,6 +45,21 @@ persistence and external data access belong to integrations.
 
 ## State and interfaces
 
+The component expansion follows the same layers; its up-front scope is recorded in
+[`ui-expansion.md`](ui-expansion.md). `features/components` composes four independent
+example groups, owns their fictional fixtures and local state, and receives route
+destinations from app composition. It does not become a dependency of other pages.
+Cards and lists use content slots. `Panel` is an alias of Card, not a duplicate
+surface implementation. Checkbox and Switch share one native-input implementation;
+Dialog and Drawer share one native-dialog controller. The floating-position hook
+is internal to Popover and Tooltip and contains only DOM interaction code.
+
+Pagination owns no collection or network state. Its range helper normalizes page
+bounds, while Records owns filters, page size, page resets and slicing the loaded
+demo rows. The same control can consume an API's total count without modification.
+Toasts receive one feature-owned message and a dismissal callback; there is no
+global notification service, automatic timer, or queue.
+
 Only routing and appearance belong to application composition. A feature owns its
 query, tab selection, loading state, form draft, and save result. Records receive a
 `RecordsSource`; settings receive a `SettingsStore`. Requests use an AbortSignal

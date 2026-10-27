@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import type { SettingsStore, WorkspaceSettings } from "../../contracts/settings";
-import { Button, Field, Notice, PageHeading, Panel, Tabs } from "../../shared/ui";
+import { Button, Checkbox, Field, Notice, PageHeading, Panel, Tabs } from "../../shared/ui";
 
 export function SettingsPage({
   store,
@@ -77,14 +77,11 @@ export function SettingsPage({
             </select>
           )}
         </Field>
-        <label className="checkbox-field">
-          <input
-            type="checkbox"
-            checked={draft.showHints}
-            onChange={(event) => edit({ ...draft, showHints: event.target.checked })}
-          />
-          Show helpful sidebar notes
-        </label>
+        <Checkbox
+          label="Show helpful sidebar notes"
+          checked={draft.showHints}
+          onCheckedChange={(showHints) => edit({ ...draft, showHints })}
+        />
         {result === "saved" && (
           <Notice tone="success">Workspace settings saved in this browser.</Notice>
         )}

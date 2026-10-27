@@ -1,4 +1,8 @@
 @import "./charts/charts.css";
+@import "./collections.css";
+@import "./controls.css";
+@import "./overlays/overlays.css";
+@import "./status.css";
 
 * {
   box-sizing: border-box;
@@ -184,13 +188,18 @@ p {
 }
 .app-menu[open] summary,
 .app-menu summary:hover {
+  background: var(--hover);
+}
+.workspace-header .app-menu[open] summary,
+.workspace-header .app-menu summary:hover {
   background: var(--header-hover);
 }
 .menu-items {
+  z-index: 25;
   position: absolute;
   top: 36px;
   left: 0;
-  width: 210px;
+  width: min(210px, calc(100vw - var(--space-6)));
   padding: var(--space-1);
   background: var(--surface);
   color: var(--ink);
@@ -428,16 +437,6 @@ p {
   display: grid;
   gap: var(--space-5);
   max-width: 560px;
-}
-.checkbox-field {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-.checkbox-field input {
-  margin: 0;
-  min-height: 0;
-  accent-color: var(--accent);
 }
 .form-actions {
   display: flex;

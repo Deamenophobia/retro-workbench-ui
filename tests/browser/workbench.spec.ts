@@ -38,17 +38,17 @@ test("navigation, browser history, unknown route recovery and registered extensi
 
 test("record search, status filters, empty state and clear action", async ({ page }) => {
   await page.goto("/#/records");
-  await expect(page.getByText("8 records shown")).toBeVisible();
+  await expect(page.getByText("8 matching records")).toBeVisible();
   await expect(page.getByRole("button", { name: "Clear", exact: true })).toBeDisabled();
   await page.getByLabel("Search records").fill("Sam");
-  await expect(page.getByText("3 records shown")).toBeVisible();
+  await expect(page.getByText("3 matching records")).toBeVisible();
   await page.getByLabel("Status", { exact: true }).selectOption("Draft");
-  await expect(page.getByText("1 records shown")).toBeVisible();
+  await expect(page.getByText("1 matching records")).toBeVisible();
   await expect(page.getByRole("cell", { name: "Review checklist" })).toBeVisible();
   await page.getByLabel("Search records").fill("not-present");
   await expect(page.getByRole("heading", { name: "No records found" })).toBeVisible();
   await page.getByRole("button", { name: "Clear filters" }).click();
-  await expect(page.getByText("8 records shown")).toBeVisible();
+  await expect(page.getByText("8 matching records")).toBeVisible();
 });
 
 test("loading, network failure, retry and invalid responses", async ({ page }) => {
@@ -67,7 +67,7 @@ test("loading, network failure, retry and invalid responses", async ({ page }) =
   await expect(page.getByRole("alert")).toContainText("Records could not be loaded");
   await page.unroute("**/demo-records.json");
   await page.getByRole("button", { name: "Try again" }).click();
-  await expect(page.getByText("8 records shown")).toBeVisible();
+  await expect(page.getByText("8 matching records")).toBeVisible();
   await page.route("**/demo-records.json", (route) => route.fulfill({ json: [{ broken: true }] }));
   await page.getByRole("button", { name: "Refresh" }).click();
   await expect(page.getByRole("alert")).toContainText("Records could not be loaded");
@@ -75,7 +75,7 @@ test("loading, network failure, retry and invalid responses", async ({ page }) =
 
 test("an older pending request cannot replace a newer search", async ({ page }) => {
   await page.goto("/#/records");
-  await expect(page.getByText("8 records shown")).toBeVisible();
+  await expect(page.getByText("8 matching records")).toBeVisible();
   let oldRequest: (() => Promise<void>) | undefined;
   let releaseOld: () => void = () => {};
   let oldFinished: () => void = () => {};
@@ -110,11 +110,11 @@ test("an older pending request cannot replace a newer search", async ({ page }) 
   await page.getByLabel("Search records").fill("Old");
   await expect.poll(() => Boolean(oldRequest)).toBe(true);
   await page.getByLabel("Search records").fill("Sam");
-  await expect(page.getByText("3 records shown")).toBeVisible();
+  await expect(page.getByText("3 matching records")).toBeVisible();
   releaseOld();
   await finished;
   await expect(page.getByRole("cell", { name: "Old guide" })).toHaveCount(0);
-  await expect(page.getByText("3 records shown")).toBeVisible();
+  await expect(page.getByText("3 matching records")).toBeVisible();
 });
 
 test("settings validate, discard, save, and use persisted start page", async ({ page }) => {
@@ -204,7 +204,7 @@ for (const theme of ["classic", "studio"]) {
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto("/");
     await page.getByLabel("Appearance", { exact: true }).selectOption(theme);
-    for (const route of ["overview", "records", "charts", "settings", "guide"]) {
+    for (const route of ["overview", "records", "charts", "components", "settings", "guide"]) {
       await nav(page).getByRole("link", { name: route, exact: false }).click();
       await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
       if (route === "records") await expect(page.getByRole("table")).toBeVisible();

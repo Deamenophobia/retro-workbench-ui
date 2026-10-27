@@ -1,0 +1,106 @@
+.choice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+.choice input,
+.radio-option input {
+  flex-shrink: 0;
+  margin: var(--space-1) 0 0;
+  min-height: 0;
+  accent-color: var(--accent);
+}
+.choice label,
+.radio-group legend {
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+.choice input:disabled ~ div,
+.radio-option:has(input:disabled) {
+  opacity: var(--disabled-opacity);
+}
+.choice-switch input {
+  appearance: none;
+  width: var(--switch-width);
+  height: var(--switch-height);
+  padding: 2px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+.choice-switch input::before {
+  content: "";
+  display: block;
+  width: calc(var(--switch-height) - 6px);
+  height: 100%;
+  background: var(--muted);
+}
+.choice-switch input:checked {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.choice-switch input:checked::before {
+  background: var(--primary-ink);
+  transform: translateX(calc(var(--switch-width) - var(--switch-height)));
+}
+.choice-switch input:disabled {
+  cursor: not-allowed;
+  opacity: var(--disabled-opacity);
+}
+.radio-group {
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: var(--space-2);
+}
+.radio-group legend {
+  padding-inline: var(--space-1);
+}
+.radio-option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+.breadcrumbs li {
+  display: flex;
+  gap: var(--space-2);
+}
+.breadcrumbs [aria-current="page"] {
+  color: var(--muted);
+}
+.accordion {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.accordion details + details {
+  border-top: 1px solid var(--line);
+}
+.accordion summary {
+  padding: var(--space-3);
+  background: var(--panel);
+  font-weight: 600;
+}
+.accordion-content {
+  padding: var(--space-4);
+}
+input:disabled,
+select:disabled,
+textarea:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+textarea {
+  resize: vertical;
+  width: 100%;
+}

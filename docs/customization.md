@@ -92,8 +92,13 @@ data. Perform server-side search/pagination for large collections rather than
 downloading everything. Compose the new adapter in `src/main.tsx` and pass it to
 `App`; do not change the table or import the adapter from a feature.
 
+The Records demo now paginates its small loaded collection locally. The shared
+Pagination control takes counts and callbacks and is equally usable with an API's
+page results. See [UI recipes](ui-recipes.md) for the difference between local
+slicing and server paging, and [component responsibilities](components.md).
+
 Keep credentials on the server. Vite variables and every asset in `public/` are
-shipped to the browser. Authentication, permissions, API caching, and pagination
+shipped to the browser. Authentication, permissions, API caching, and server paging
 are application-specific work, not hidden services in this starter.
 
 `useRecords` aborts obsolete requests and ignores results after cleanup even when

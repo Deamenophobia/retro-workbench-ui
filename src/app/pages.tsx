@@ -6,6 +6,7 @@ import { RecordsPage } from "../features/records";
 import { SettingsPage } from "../features/settings";
 import { GuidePage } from "../features/guide";
 import { ChartsPage } from "../features/charts";
+import { ComponentsPage } from "../features/components";
 import { pageLinks } from "./config";
 
 export type PageContext = {
@@ -51,6 +52,15 @@ export const pages: readonly PageDefinition[] = [
     icon: "⌁",
     href: pageLinks.charts,
     render: () => <ChartsPage />,
+  },
+  {
+    id: "components",
+    label: "Components",
+    icon: "▦",
+    href: pageLinks.components,
+    render: () => (
+      <ComponentsPage overviewHref={pageLinks.overview} recordsHref={pageLinks.records} />
+    ),
   },
   {
     id: "settings",

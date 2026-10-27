@@ -1,0 +1,57 @@
+.skeleton {
+  display: grid;
+  gap: var(--space-3);
+}
+.skeleton span {
+  display: block;
+  height: var(--space-3);
+  background: var(--skeleton);
+}
+.skeleton span:last-child {
+  width: 65%;
+}
+.progress-field {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.progress-field label {
+  grid-column: 1 / -1;
+  font-weight: 600;
+}
+.progress-field progress {
+  width: 100%;
+  height: var(--space-3);
+  accent-color: var(--accent);
+}
+.toast-region {
+  position: fixed;
+  bottom: var(--space-7);
+  right: var(--space-4);
+  z-index: 30;
+  max-width: min(var(--toast-width), calc(100vw - var(--space-6)));
+}
+.toast {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: var(--space-4);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-menu);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+.toast p {
+  flex: 1 1 160px;
+  font-size: var(--text-sm);
+}
+.toast.notice-success {
+  border-left-color: var(--success);
+}
+.toast.notice-error {
+  border-left-color: var(--danger);
+}

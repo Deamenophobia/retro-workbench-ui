@@ -9,6 +9,7 @@ export const pageLinks = {
   overview: "#/overview",
   records: "#/records",
   charts: "#/charts",
+  components: "#/components",
   settings: "#/settings",
   guide: "#/guide",
 };

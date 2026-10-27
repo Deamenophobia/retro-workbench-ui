@@ -20,4 +20,13 @@
   --control-height: 32px;
   --focus-width: 2px;
   --disabled-opacity: 0.45;
+  --avatar-size: 36px;
+  --switch-width: 36px;
+  --switch-height: 20px;
+  --dialog-width: 500px;
+  --drawer-width: 400px;
+  --popover-width: 300px;
+  --tooltip-width: 240px;
+  --toast-width: 400px;
+  --floating-gap: 8px;
 }

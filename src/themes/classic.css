@@ -42,6 +42,8 @@
   --danger-bg: #fff1ee;
   --status-bg: #f0f1ef;
   --shadow-menu: 2px 3px 8px #0002;
+  --overlay-backdrop: #19232b80;
+  --skeleton: #dce1e5;
   --chart-blue: #246394;
   --chart-sage: #52785d;
   --chart-amber: #9a712c;

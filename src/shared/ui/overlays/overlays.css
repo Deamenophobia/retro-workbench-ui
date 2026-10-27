@@ -1,0 +1,91 @@
+.modal-surface {
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0;
+  width: min(var(--dialog-width), calc(100vw - var(--space-6)));
+  max-width: none;
+  max-height: calc(100dvh - var(--space-6));
+  box-shadow: var(--shadow-menu);
+}
+.modal-surface[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+.modal-surface::backdrop {
+  background: var(--overlay-backdrop);
+}
+.modal-heading,
+.modal-actions {
+  padding: var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  background: var(--panel);
+}
+.modal-heading {
+  border-bottom: 1px solid var(--line);
+}
+.modal-heading h2 {
+  overflow-wrap: anywhere;
+  flex: 1;
+  min-width: 0;
+}
+.modal-body {
+  overflow: auto;
+  padding: var(--space-5);
+}
+.modal-body > p:first-child {
+  margin-bottom: var(--space-4);
+}
+.modal-actions {
+  border-top: 1px solid var(--line);
+  justify-content: flex-end;
+}
+.modal-end {
+  margin: 0 0 0 auto;
+  width: min(var(--drawer-width), calc(100vw - var(--space-4)));
+  height: 100dvh;
+  max-height: none;
+  border-radius: 0;
+}
+.floating-anchor {
+  display: inline-flex;
+  max-width: 100%;
+}
+.floating-surface {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  max-width: calc(100vw - 2 * var(--floating-gap));
+  max-height: calc(100dvh - 2 * var(--floating-gap));
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  color: var(--ink);
+  background: var(--surface);
+  box-shadow: var(--shadow-menu);
+  overflow-wrap: anywhere;
+}
+.popover {
+  width: var(--popover-width);
+}
+.popover-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+.popover-heading h3 {
+  font-size: var(--text-base);
+}
+.tooltip {
+  width: max-content;
+  max-width: min(var(--tooltip-width), calc(100vw - 2 * var(--floating-gap)));
+  font-size: var(--text-sm);
+}
