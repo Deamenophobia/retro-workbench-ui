@@ -8,6 +8,7 @@ export const brand = {
 export const pageLinks = {
   overview: "#/overview",
   records: "#/records",
+  charts: "#/charts",
   settings: "#/settings",
   guide: "#/guide",
 };

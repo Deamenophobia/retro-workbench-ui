@@ -204,7 +204,7 @@ for (const theme of ["classic", "studio"]) {
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto("/");
     await page.getByLabel("Appearance", { exact: true }).selectOption(theme);
-    for (const route of ["overview", "records", "settings", "guide"]) {
+    for (const route of ["overview", "records", "charts", "settings", "guide"]) {
       await nav(page).getByRole("link", { name: route, exact: false }).click();
       await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
       if (route === "records") await expect(page.getByRole("table")).toBeVisible();

@@ -29,6 +29,13 @@ Overview and Guide are small presentation pages. Settings only notify compositio
 after a successful save because the header and sidebar also consume those values.
 No global feature-state store is needed.
 
+`LineChart`, `BarChart`, and `DonutChart` are exported through the same shared UI
+entry point. They take plain typed data, a title and description; they never load
+data or import features. LineChart owns series visibility and point inspection.
+ChartFrame provides a consistent figure caption and a native data-table disclosure.
+SVG coordinates adapt to the measured width; theme tokens provide all series colors.
+The gallery feature owns the illustrative values and range selector.
+
 Browser adapters use namespaced storage keys and report failures instead of
 throwing into rendering. The records adapter validates JSON at the integration
 boundary. The shell never knows where records or preferences came from.

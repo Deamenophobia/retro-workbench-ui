@@ -13,7 +13,12 @@ disclosure-menu interaction and appearance fallback behavior. Reimplement the
 components with domain-free props; do not copy the original application graph.
 
 Exclude the core package, datasets, calculations, graph editing/execution, workers,
-file codecs, document history, charts, React Flow, and canvas dependencies.
+file codecs, document history, domain-specific charts, React Flow, and canvas dependencies.
+
+The chart gallery adds domain-free SVG presentation under `shared/ui/charts`.
+Those components own only drawing, legends and accessible data disclosure. The
+`features/charts` page owns fictional example values and gallery controls. Palette
+values remain in theme tokens; no charting, canvas or analytics package is needed.
 
 ## Ownership and dependency direction
 

@@ -5,6 +5,7 @@ import { OverviewPage } from "../features/overview";
 import { RecordsPage } from "../features/records";
 import { SettingsPage } from "../features/settings";
 import { GuidePage } from "../features/guide";
+import { ChartsPage } from "../features/charts";
 import { pageLinks } from "./config";
 
 export type PageContext = {
@@ -43,6 +44,13 @@ export const pages: readonly PageDefinition[] = [
     icon: "▤",
     href: pageLinks.records,
     render: ({ records }) => <RecordsPage source={records} />,
+  },
+  {
+    id: "charts",
+    label: "Charts",
+    icon: "⌁",
+    href: pageLinks.charts,
+    render: () => <ChartsPage />,
   },
   {
     id: "settings",

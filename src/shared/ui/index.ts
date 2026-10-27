@@ -11,3 +11,7 @@ export type { Column } from "./DataTable";
 export { Tabs } from "./Tabs";
 export { Menu } from "./Menu";
 export type { MenuItem } from "./Menu";
+export { LineChart } from "./charts/LineChart";
+export { BarChart } from "./charts/BarChart";
+export { DonutChart } from "./charts/DonutChart";
+export type { ChartColor, ChartDatum, ChartSeries } from "./charts/types";
