@@ -42,9 +42,9 @@ test("record search, status filters, empty state and clear action", async ({ pag
   await expect(page.getByRole("button", { name: "Clear", exact: true })).toBeDisabled();
   await page.getByLabel("Search records").fill("Sam");
   await expect(page.getByText("3 matching records")).toBeVisible();
-  await page.getByLabel("Status", { exact: true }).selectOption("Draft");
+  await page.getByRole("combobox", { name: "Status", exact: true }).selectOption("Draft");
   await expect(page.getByText("1 matching records")).toBeVisible();
-  await expect(page.getByRole("cell", { name: "Review checklist" })).toBeVisible();
+  await expect(page.getByRole("cell", { name: "Review checklist", exact: true })).toBeVisible();
   await page.getByLabel("Search records").fill("not-present");
   await expect(page.getByRole("heading", { name: "No records found" })).toBeVisible();
   await page.getByRole("button", { name: "Clear filters" }).click();

@@ -25,6 +25,18 @@ state such as focus or disclosure visibility.
 
 ## Collections and controls
 
+`DataTable` additionally accepts controlled `sorting` and `selection`. It emits
+changes without sorting or loading rows. `ColumnVisibility` controls visible IDs.
+`Checkbox` supports a native `indeterminate` state for partial page selection.
+See [table and input recipes](input-recipes.md) for ownership and examples.
+
+| Input                    | Responsibility                                                                                                   |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| `Combobox`               | Controlled scalar selection, local search, keyboard navigation and clear.                                        |
+| `MultiSelect`            | Controlled string array, shared search/listbox behavior and removable tags.                                      |
+| `DateInput`, `DateRange` | Native date editing with ISO date-only values, bounds and caller-supplied validation.                            |
+| `FilePicker`             | File choice/drop, caller-supplied type/size/count rules, removal and supplied progress; no reading or uploading. |
+
 | Component            | Responsibility and interface                                                                                                                                                                                                 |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Card`               | Named section with `title`, optional `description`, `media`, `actions`, `footer`, and arbitrary children. `Panel` is the same implementation under its original name.                                                        |
@@ -47,7 +59,7 @@ state such as focus or disclosure visibility.
 ordinary Tab order, not ARIA application-menu arrow keys. A disabled action can be
 `{ label, disabled: true }` without a meaningless callback.
 
-The Components gallery demonstrates the APIs through four small example modules.
+The Components gallery demonstrates the APIs through focused example modules in five tabs.
 Its saved-resource set is shared only by the collection cards and list that use it.
 The form, overlay preview and feedback preview each own their own state. Tabs keep
 examples mounted so drafts survive tab and appearance changes; leaving the page

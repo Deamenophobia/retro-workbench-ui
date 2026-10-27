@@ -2,7 +2,7 @@
 
 Validated on 2026-10-27, Windows, Node.js 22.14.0, npm 10.9.2.
 
-## Completed checks
+## Earlier starter and gallery checks
 
 | Check                      | Result                                                                             |
 | -------------------------- | ---------------------------------------------------------------------------------- |
@@ -101,21 +101,63 @@ under `test-results/` and retained by CI.
 - Interfaces use native props, typed columns, explicit callbacks and slots. No
   components switch between unrelated jobs through collections of boolean flags.
 - Dependencies are pinned; only React and React DOM ship as runtime dependencies.
-- The expansion adds no packages. Panel/Card, Checkbox/Switch and Dialog/Drawer
+- The initial collections expansion added no packages. Panel/Card, Checkbox/Switch and Dialog/Drawer
   share implementations. Native inputs, dialogs, popovers and disclosure elements
   supply platform behavior; only positioning and tooltip hover grace need small
   shared helpers. No global feature store or sibling-feature import was added.
 - The Components page was added through public exports and the page registry,
   without changing AppShell or App composition. Records retains request guards;
   the paging control is reusable with both lists and tables.
+- The later inputs share a private choice-list implementation, while dates and
+  files compose existing primitives. Table ordering and selection reconciliation
+  remain in Records. An explicit modal return-focus ref handles WebKit without
+  introducing a global focus manager or changing business state ownership.
 - Streamweave remained clean at commit
   `8d813c1b64e96405a2b9fcbe8425a54f167b5e87` after source inspection and browser review.
 
+## Advanced controls and quality expansion
+
+The later expansion adds controlled table sorting, cross-page selection and
+column visibility; searchable scalar/multiple selection; native dates/ranges; and
+file selection, validation, removal and supplied progress. Shared UI owns no
+requests, storage or uploads. The only new dependency is development-only axe.
+
+Fourteen Windows visual references were captured and individually reviewed for
+Classic and Studio: records, collections, open choice list, dates, file progress,
+dialog and narrow inputs. These references are committed under
+`tests/visual-baselines/win32`; normal tests compare rather than update them.
+The new test strategy and update workflow are in [testing.md](testing.md).
+
+| Latest Windows check                               | Result                                                                     |
+| -------------------------------------------------- | -------------------------------------------------------------------------- |
+| Formatting, strict types, boundaries/cycles        | Passed                                                                     |
+| Unit behavior                                      | 18 passed                                                                  |
+| Production build                                   | Passed; 90 modules, 286 kB JS / 88 kB gzip, 29 kB CSS / 6 kB gzip          |
+| Chromium desktop/narrow, WebKit, visual comparison | 101 passed, including all 14 Windows screenshot comparisons                |
+| Firefox                                            | 33 tests blocked at browser launch by the environment error below          |
+| Full `npm run check`                               | Completed with a failing exit status solely from that Firefox launch error |
+| Runtime dependency audit                           | No reported vulnerabilities                                                |
+
+The expanded checks found and fixed prose links identified only by color,
+disabled helper-text contrast, a tooltip button's mismatched accessible name,
+a combobox popup dismissal race, WebKit menu clicks lost during blur, explicit
+modal focus restoration after mouse activation, and narrow enlarged-text overflow.
+Windows Chromium and WebKit axe scans pass in both appearances without exclusions;
+the Chromium narrow project also passes those scans. All 18 unit tests pass.
+
+The Windows Firefox 151.0 test binary cannot launch: Windows reports a side-by-side
+assembly error for mozglue. Re-downloading the pinned browser reproduced it.
+This is recorded as an environment failure, not skipped or reported as a pass.
+Firefox remains required in CI.
+
 ## Limits of this evidence
 
-Automated browser coverage is Chromium only. Firefox, WebKit, physical touch
-devices, and screen readers were not tested. Narrow-layout evidence combines real
-browser automation with screenshot review; it is not a physical-device test.
+Physical touch devices and a completed screen-reader session are not covered.
+NVDA 2026.3 was prepared as a signed portable test tool, but native browser review
+was stopped because the computer-use safety check could not reliably determine
+the browser URL. NVDA was then stopped. No screen-reader success is claimed.
+Narrow-layout evidence combines browser automation with screenshot review; it is
+not a physical-device test. Enlarged type is a reflow test, not a full zoom audit.
 No claim of a formal accessibility audit is made. The demo intentionally has no
 authentication, backend, large-table virtualization, cross-tab synchronization or
 offline caching. Page-local unsaved drafts reset on navigation, as documented in

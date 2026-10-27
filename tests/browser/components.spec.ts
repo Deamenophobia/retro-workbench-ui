@@ -180,7 +180,7 @@ test("popover, tooltip, menus and accordion support keyboard dismissal and activ
   await trigger.click();
   await page.locator(".workspace-status").click();
   await expect(popover).toBeHidden();
-  const tooltipTrigger = page.getByRole("button", { name: "Preview information" });
+  const tooltipTrigger = page.getByRole("button", { name: "About this preview" });
   await tooltipTrigger.focus();
   await expect(page.getByRole("tooltip")).toBeVisible();
   await page.keyboard.press("Escape");

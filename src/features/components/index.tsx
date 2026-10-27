@@ -4,6 +4,9 @@ import { CollectionsExample } from "./CollectionsExample";
 import { FormsExample } from "./FormsExample";
 import { OverlaysExample } from "./OverlaysExample";
 import { FeedbackExample } from "./FeedbackExample";
+import { SelectionExample } from "./SelectionExample";
+import { DateExample } from "./DateExample";
+import { FilesExample } from "./FilesExample";
 import "./gallery.css";
 
 export function ComponentsPage({
@@ -36,6 +39,17 @@ export function ComponentsPage({
               content: <CollectionsExample recordsHref={recordsHref} />,
             },
             { id: "forms", label: "Forms", content: <FormsExample /> },
+            {
+              id: "inputs",
+              label: "Advanced inputs",
+              content: (
+                <div className="gallery-stack">
+                  <SelectionExample />
+                  <DateExample />
+                  <FilesExample />
+                </div>
+              ),
+            },
             {
               id: "overlays",
               label: "Navigation & overlays",

@@ -28,6 +28,7 @@ export function AppShell({
     <div className="workspace-shell">
       <a
         className="skip-link"
+        tabIndex={0}
         href="#main-content"
         onClick={(event) => {
           event.preventDefault();

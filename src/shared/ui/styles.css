@@ -3,6 +3,7 @@
 @import "./controls.css";
 @import "./overlays/overlays.css";
 @import "./status.css";
+@import "./inputs.css";
 
 * {
   box-sizing: border-box;
@@ -60,6 +61,10 @@ a {
 a:hover {
   text-decoration: underline;
 }
+p a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 :focus-visible {
   outline: var(--focus-width) solid var(--accent);
   outline-offset: 3px;
@@ -80,7 +85,8 @@ p {
 [hidden] {
   display: none !important;
 }
-.sr-only {
+.sr-only,
+.table-selection .choice > div {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -106,9 +112,10 @@ p {
   height: 100dvh;
   display: grid;
   grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
-  grid-template-rows: 54px minmax(0, 1fr) 28px;
+  grid-template-rows: minmax(54px, auto) minmax(0, 1fr) minmax(28px, auto);
 }
 .workspace-header {
+  min-width: 0;
   grid-column: 1 / -1;
   display: flex;
   align-items: center;
@@ -163,6 +170,8 @@ p {
   white-space: nowrap;
 }
 .appearance-control {
+  min-width: 0;
+  max-width: 100%;
   margin-left: auto;
   display: flex;
   align-items: center;
@@ -171,7 +180,7 @@ p {
   white-space: nowrap;
 }
 .appearance-control select {
-  max-width: 166px;
+  max-width: 100%;
   font-size: var(--text-sm);
 }
 .app-menu {
@@ -224,6 +233,9 @@ p {
   text-decoration: none;
 }
 .workspace-sidebar {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  overflow-y: auto;
   min-height: 0;
   display: flex;
   flex-direction: column;
@@ -254,6 +266,9 @@ p {
   padding: var(--space-2);
   border-left: 3px solid transparent;
   border-radius: var(--radius);
+}
+.workspace-nav a > span:last-child {
+  min-width: 0;
 }
 .workspace-nav a:hover {
   background: var(--hover);
@@ -699,7 +714,7 @@ tbody tr:last-child td {
     --sidebar-width: 108px;
   }
   .workspace-shell {
-    grid-template-rows: 88px minmax(0, 1fr) 28px;
+    grid-template-rows: minmax(88px, auto) minmax(0, 1fr) minmax(28px, auto);
   }
   .workspace-header {
     flex-wrap: wrap;
@@ -710,7 +725,10 @@ tbody tr:last-child td {
   .brand {
     flex-basis: 100%;
     border-right: 0;
-    height: 32px;
+    min-height: 32px;
+    height: auto;
+    white-space: normal;
+    overflow-wrap: anywhere;
     padding: 0;
   }
   .brand-mark {
@@ -719,15 +737,12 @@ tbody tr:last-child td {
     height: 23px;
     font-size: 20px;
   }
-  .appearance-control select {
-    max-width: 148px;
-  }
   .workspace-nav a {
     padding: var(--space-2) var(--space-1);
     font-size: var(--text-sm);
   }
   .nav-icon {
-    width: 14px;
+    width: max(14px, 1em);
     font-size: var(--text-base);
   }
   .workspace-nav > .eyebrow {

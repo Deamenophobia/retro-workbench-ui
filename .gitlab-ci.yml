@@ -13,7 +13,7 @@ verify:
       - .npm/
   script:
     - npm ci --cache .npm --prefer-offline --no-fund
-    - npx playwright install --with-deps chromium
+    - npx playwright install --with-deps chromium firefox webkit
     - npm run check
   artifacts:
     when: always
@@ -22,5 +22,23 @@ verify:
       - dist/
       - playwright-report/
       - test-results/
+      - tests/visual-baselines/
     reports:
       junit: test-results/junit.xml
+
+# Explicit baseline capture only. Normal verification never updates expected images.
+capture-visual-baselines:
+  stage: verify
+  when: manual
+  allow_failure: true
+  script:
+    - npm ci --no-fund
+    - npx playwright install --with-deps chromium
+    - npm run build
+    - npx playwright test --project=visual --update-snapshots
+    # Temporary bootstrap transport; remove after reviewed Linux references are committed.
+    - node -e "const fs=require('node:fs'); for (const name of fs.readdirSync('tests/visual-baselines/linux')) console.log('VISUAL_BASELINE '+name+' '+fs.readFileSync('tests/visual-baselines/linux/'+name).toString('base64'))"
+  artifacts:
+    expire_in: 7 days
+    paths:
+      - tests/visual-baselines/

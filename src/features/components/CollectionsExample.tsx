@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   Avatar,
   Badge,
@@ -18,6 +18,11 @@ export function CollectionsExample({ recordsHref }: { recordsHref: string }) {
   const [pageSize, setPageSize] = useState<number>(listPageSizes[0]);
   const [saved, setSaved] = useState<ReadonlySet<string>>(new Set());
   const [selected, setSelected] = useState<Resource | null>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  function showResource(resource: Resource, button: HTMLButtonElement) {
+    trigger.current = button;
+    setSelected(resource);
+  }
   const range = getPagination(resources.length, page, pageSize);
   function toggleSaved(id: string) {
     setSaved((previous) => {
@@ -50,7 +55,11 @@ export function CollectionsExample({ recordsHref }: { recordsHref: string }) {
             </div>
           }
           actions={<Badge tone="success">Ready</Badge>}
-          footer={<Button onClick={() => setSelected(resources[0])}>View handbook</Button>}
+          footer={
+            <Button onClick={(event) => showResource(resources[0], event.currentTarget)}>
+              View handbook
+            </Button>
+          }
         >
           <p>A short introduction to the shared workspace, with ownership and useful references.</p>
         </Card>
@@ -113,7 +122,10 @@ export function CollectionsExample({ recordsHref }: { recordsHref: string }) {
                 </Button>
               }
             >
-              <Button variant="text" onClick={() => setSelected(resource)}>
+              <Button
+                variant="text"
+                onClick={(event) => showResource(resource, event.currentTarget)}
+              >
                 {resource.title}
               </Button>
               <p>{resource.description}</p>
@@ -126,6 +138,7 @@ export function CollectionsExample({ recordsHref }: { recordsHref: string }) {
         open={selected !== null}
         onClose={() => setSelected(null)}
         title={selected?.title ?? "Resource details"}
+        returnFocus={trigger}
       >
         {selected && (
           <div className="gallery-stack">

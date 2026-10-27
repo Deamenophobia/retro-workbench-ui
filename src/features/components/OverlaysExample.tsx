@@ -17,6 +17,7 @@ export function OverlaysExample({ recordsHref }: { recordsHref: string }) {
   const [draft, setDraft] = useState(name);
   const [message, setMessage] = useState("");
   const input = useRef<HTMLInputElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
   function save(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!draft.trim()) {
@@ -39,6 +40,7 @@ export function OverlaysExample({ recordsHref }: { recordsHref: string }) {
           </p>
           <div className="gallery-actions">
             <Button
+              ref={trigger}
               onClick={() => {
                 setDraft(name);
                 setOpen(true);
@@ -63,7 +65,7 @@ export function OverlaysExample({ recordsHref }: { recordsHref: string }) {
             </Popover>
             <Tooltip text="This example changes only the current preview.">
               {(props) => (
-                <Button {...props} variant="text" aria-label="Preview information">
+                <Button {...props} variant="text">
                   About this preview
                 </Button>
               )}
@@ -115,6 +117,7 @@ export function OverlaysExample({ recordsHref }: { recordsHref: string }) {
         title="Rename collection"
         description="Choose a short, recognizable name."
         initialFocus={input}
+        returnFocus={trigger}
       >
         <form className="form-stack" onSubmit={save}>
           <Field label="Collection name">

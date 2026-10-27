@@ -34,8 +34,12 @@ export function Menu({ label, items }: { label: string; items: readonly MenuItem
         }
       }}
     >
-      <summary>{label}</summary>
-      <div className="menu-items">
+      <summary tabIndex={0}>{label}</summary>
+      <div
+        className="menu-items"
+        // Keep focus until click: WebKit otherwise blurs to an ancestor and hides the action.
+        onMouseDown={(event) => event.preventDefault()}
+      >
         {items.map((item) =>
           "href" in item ? (
             <a key={item.label} href={item.href} onClick={close}>

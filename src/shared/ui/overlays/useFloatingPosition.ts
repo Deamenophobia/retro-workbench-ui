@@ -16,6 +16,7 @@ export function useFloatingPosition(
       if (!view || !target || !popup) return;
       const gap = parseFloat(view.getComputedStyle(popup).getPropertyValue("--floating-gap"));
       const box = target.getBoundingClientRect();
+      popup.style.setProperty("--anchor-width", `${box.width}px`);
       const left = Math.max(gap, Math.min(box.left, view.innerWidth - popup.offsetWidth - gap));
       const below = box.bottom + gap;
       const top =

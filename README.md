@@ -45,9 +45,13 @@ No backend, secrets, or environment variables are required.
 - A Components gallery with lists, composable cards, avatars, pagination, choice
   controls, breadcrumbs, accordions, dialogs, drawers, popovers, tooltips, progress,
   skeletons and dismissible notifications. Records demonstrates real local paging.
+- Controlled sorting, row selection and column visibility; searchable comboboxes,
+  removable multi-select tags, native date/range controls and file selection/drop
+  validation. File progress comes from the caller; the demo uploads nothing.
 - Explicit integration interfaces for records and browser settings.
 - Enforced dependency directions, cycle detection, strict types, behavioral tests,
-  and GitLab CI testing the production build at desktop and narrow widths.
+  and GitLab CI testing Chromium, Firefox and WebKit, axe accessibility checks,
+  narrow/enlarged-text layouts and visual regressions in both appearances.
 
 The only runtime packages are **React and React DOM**. There is no React Flow,
 canvas engine, analytics core, worker, trading logic, or Streamweave dataset.
@@ -71,13 +75,15 @@ Read [architecture and ownership](docs/architecture.md), the
 For chart props and limits, see [charts and graphs](docs/charts.md).
 For reusable component examples, see [UI recipes](docs/ui-recipes.md) and the
 [expansion scope and ownership](docs/ui-expansion.md).
+See [input recipes](docs/input-recipes.md) for the new controlled inputs and table
+interfaces, and [testing and visual baselines](docs/testing.md) for maintenance.
 
 ## Verify
 
-Install the test browser once (on Linux use `--with-deps`):
+Install the test browsers once (on Linux use `--with-deps`):
 
 ```sh
-npx playwright install chromium
+npx playwright install chromium firefox webkit
 npm run format
 npm run check
 ```
@@ -88,7 +94,7 @@ production build, and Playwright tests against that build. Individual commands a
 Browser tests use port 5191; leave it free. HTML reports, traces on failure, and
 screenshots are written to ignored `playwright-report/` and `test-results/`.
 
-GitLab CI installs Chromium and its Linux dependencies and runs the same command.
+GitLab CI installs all three browser engines and their dependencies and runs the same command.
 Its artifacts retain build output, screenshots, traces, and JUnit results for seven
 days. See [validation evidence](docs/validation.md) for the checks actually run.
 
@@ -101,8 +107,9 @@ Components were rewritten around domain-free interfaces; the original repository
 is not a dependency and was left unchanged. See the ownership document for the
 exclusion list and deliberate limits.
 
-Tooling follows the source's Vite, TypeScript, Prettier, and tsx stack. Two additional
+Tooling follows the source's Vite, TypeScript, Prettier, and tsx stack. Additional
 development tools have specific jobs: Playwright tests real browser behavior and
 captures layout evidence; Babel's parser gives the boundary checker actual
-TypeScript/JSX syntax trees rather than fragile text matching. Neither ships to
-the browser. Versions and transitive dependencies are locked in `package-lock.json`.
+TypeScript/JSX syntax trees rather than fragile text matching. Axe supplies automated
+accessibility rules through Playwright. These are development dependencies only.
+Versions and transitive dependencies are locked in `package-lock.json`.

@@ -9,6 +9,7 @@ export type ModalProps = {
   children: ReactNode;
   actions?: ReactNode;
   initialFocus?: RefObject<HTMLElement | null>;
+  returnFocus?: RefObject<HTMLElement | null>;
 };
 
 export function ModalSurface({
@@ -19,6 +20,7 @@ export function ModalSurface({
   children,
   actions,
   initialFocus,
+  returnFocus,
   placement,
 }: ModalProps & { placement: "center" | "end" }) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -26,14 +28,14 @@ export function ModalSurface({
   useLayoutEffect(() => {
     const dialog = ref.current;
     if (!open || !dialog) return;
-    const opener = dialog.ownerDocument.activeElement;
+    const opener = returnFocus?.current ?? dialog.ownerDocument.activeElement;
     dialog.showModal();
     initialFocus?.current?.focus();
     return () => {
       dialog.close();
       if (opener instanceof HTMLElement && opener.isConnected) opener.focus();
     };
-  }, [open, initialFocus]);
+  }, [open, initialFocus, returnFocus]);
   return (
     <dialog
       ref={ref}

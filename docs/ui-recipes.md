@@ -95,16 +95,27 @@ behavior with the form owner; move persistence to an injected integration.
 ```tsx
 const [open, setOpen] = useState(false);
 const input = useRef<HTMLInputElement>(null);
+const trigger = useRef<HTMLButtonElement>(null);
 
-<Button onClick={() => setOpen(true)}>Rename</Button>;
-<Dialog open={open} onClose={() => setOpen(false)} title="Rename document" initialFocus={input}>
+<Button ref={trigger} onClick={() => setOpen(true)}>
+  Rename
+</Button>;
+<Dialog
+  open={open}
+  onClose={() => setOpen(false)}
+  title="Rename document"
+  initialFocus={input}
+  returnFocus={trigger}
+>
   <Field label="Document name">{(props) => <input {...props} ref={input} />}</Field>
 </Dialog>;
 ```
 
 Use Drawer with the same props for side content. Native `showModal()` makes the
 background inert. Escape or the Close button calls `onClose`; the owner must update
-`open`. Closing restores the connected trigger. Native keyboard navigation can
+`open`. Supply `returnFocus` for a consistent return target, including browsers
+that do not focus a button on mouse click. Otherwise closing restores the element
+focused before opening. Only connected targets are restored. Native keyboard navigation can
 visit browser chrome but cannot activate background document controls. Backdrop
 clicking does not discard edits. For a form, put submit buttons inside the form,
 or use their native `form` attribute if composing an actions footer.
@@ -145,9 +156,9 @@ The gallery is removable through its page registration without affecting shared 
 
 Run `npm run check` after changes. Add behavioral coverage when introducing new
 interactions, including focus, dismissal, disabled states and narrow layouts.
-Native dialog, popover and ResizeObserver need modern browsers. Tests currently
-cover Chromium desktop and narrow viewports; verify your supported browser and
-screen-reader matrix before deploying an adapted application.
+Native dialog, popover and ResizeObserver need modern browsers. Tests cover
+Chromium desktop/narrow, Firefox and WebKit; see [testing](testing.md) for environment
+requirements and the distinction between automated and screen-reader coverage.
 
 Platform references: [native dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog)
 and [native popover](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API/Using).

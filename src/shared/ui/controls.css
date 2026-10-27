@@ -15,7 +15,7 @@
   font-weight: 600;
   font-size: var(--text-sm);
 }
-.choice input:disabled ~ div,
+.choice input:disabled ~ div > label,
 .radio-option:has(input:disabled) {
   opacity: var(--disabled-opacity);
 }

@@ -46,13 +46,24 @@ persistence and external data access belong to integrations.
 ## State and interfaces
 
 The component expansion follows the same layers; its up-front scope is recorded in
-[`ui-expansion.md`](ui-expansion.md). `features/components` composes four independent
+[`ui-expansion.md`](ui-expansion.md) and [`controls-and-quality.md`](controls-and-quality.md).
+`features/components` composes five independent
 example groups, owns their fictional fixtures and local state, and receives route
 destinations from app composition. It does not become a dependency of other pages.
 Cards and lists use content slots. `Panel` is an alias of Card, not a duplicate
 surface implementation. Checkbox and Switch share one native-input implementation;
 Dialog and Drawer share one native-dialog controller. The floating-position hook
-is internal to Popover and Tooltip and contains only DOM interaction code.
+is internal to Popover, Tooltip and selection inputs and contains only DOM interaction code.
+
+Combobox and MultiSelect have distinct value types and share one private listbox
+implementation. Focus, search text and active-option state belong there; selected
+values belong to the consumer. FilePicker owns drag feedback only, returns File
+objects through callbacks, and never reads or uploads their contents. DateRange
+composes native date inputs with date-only strings; validation messages belong to
+the form. `records/recordView.ts` owns sorting and selected-ID reconciliation.
+The table renders controlled headers and checkboxes without sorting, fetching or
+persisting data. ColumnVisibility describes visible IDs without importing columns
+from any feature. There is no global table, selection or upload service.
 
 Pagination owns no collection or network state. Its range helper normalizes page
 bounds, while Records owns filters, page size, page resets and slicing the loaded

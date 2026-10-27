@@ -1,4 +1,4 @@
-import { useId, type InputHTMLAttributes, type ReactNode } from "react";
+import { useId, useLayoutEffect, useRef, type InputHTMLAttributes, type ReactNode } from "react";
 
 type ChoiceProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -16,9 +16,14 @@ function Choice({
   onCheckedChange,
   id: suppliedId,
   className = "",
+  indeterminate = false,
   ...props
-}: ChoiceProps & { kind: "checkbox" | "switch" }) {
+}: ChoiceProps & { kind: "checkbox" | "switch"; indeterminate?: boolean }) {
   const generatedId = useId();
+  const input = useRef<HTMLInputElement>(null);
+  useLayoutEffect(() => {
+    if (input.current) input.current.indeterminate = indeterminate;
+  }, [indeterminate]);
   const id = suppliedId ?? generatedId;
   const describedBy = [props["aria-describedby"], description ? `${id}-help` : undefined]
     .filter(Boolean)
@@ -27,6 +32,7 @@ function Choice({
     <div className={`choice choice-${kind} ${className}`}>
       <input
         {...props}
+        ref={input}
         id={id}
         type="checkbox"
         role={kind === "switch" ? "switch" : undefined}
@@ -45,7 +51,7 @@ function Choice({
   );
 }
 
-export function Checkbox(props: ChoiceProps) {
+export function Checkbox(props: ChoiceProps & { indeterminate?: boolean }) {
   return <Choice {...props} kind="checkbox" />;
 }
 export function Switch(props: ChoiceProps) {
