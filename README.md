@@ -8,18 +8,45 @@ panels, persistent sidebar, top menus, and separate content views.
 selector saves a browser preference, applied before React mounts. Both appearances
 use exactly the same components and behavior.
 
+## Featured screenshots
+
+**Classic · Retro** — the default appearance, with a sortable record table,
+selection, column controls, and pagination.
+
+![Classic appearance with a persistent sidebar and record directory](docs/screenshots/featured-classic.png)
+
+<details>
+<summary>See Studio, charts, reusable components, and the narrow layout</summary>
+
+**Studio · Original** — the same components in a dark appearance, with reusable
+line, bar, and donut charts.
+
+![Studio appearance with the line, bar, and donut chart gallery](docs/screenshots/featured-studio-charts.png)
+
+**Reusable components** — composable cards, resource lists, and pagination.
+
+![Classic component gallery with cards, a resource list, and pagination](docs/screenshots/featured-components.png)
+
+**Narrow layout** — persistent navigation and compact form controls.
+
+![Studio appearance at a narrow width with searchable inputs and removable tags](docs/screenshots/featured-narrow.png)
+
+</details>
+
 ## Start developing
+
+Choose **Use this template** on GitHub to start your own repository, or clone it:
 
 Requires Node.js **22.12 or newer** and npm.
 
 ```sh
-git clone git@gitlab.com:Deamenophobia/retro-workbench-ui.git
+git clone https://github.com/Deamenophobia/retro-workbench-ui.git
 cd retro-workbench-ui
 npm ci
 npm run dev
 ```
 
-Open <http://127.0.0.1:5190>. This is a private repository; cloning requires access.
+Open <http://127.0.0.1:5190>.
 On Windows, use `npm.cmd` if PowerShell's execution policy blocks `npm.ps1`.
 
 ```sh
