@@ -1,0 +1,66 @@
+[
+  {
+    "id": "WK-001",
+    "name": "Welcome guide",
+    "category": "Document",
+    "owner": "Alex Morgan",
+    "status": "Ready",
+    "updated": "2026-10-24"
+  },
+  {
+    "id": "WK-002",
+    "name": "Workspace checklist",
+    "category": "Checklist",
+    "owner": "Sam Chen",
+    "status": "Ready",
+    "updated": "2026-10-24"
+  },
+  {
+    "id": "WK-003",
+    "name": "Team directory",
+    "category": "Reference",
+    "owner": "Jamie Lee",
+    "status": "Draft",
+    "updated": "2026-10-23"
+  },
+  {
+    "id": "WK-004",
+    "name": "Writing guidelines",
+    "category": "Document",
+    "owner": "Alex Morgan",
+    "status": "Ready",
+    "updated": "2026-10-22"
+  },
+  {
+    "id": "WK-005",
+    "name": "Review checklist",
+    "category": "Checklist",
+    "owner": "Sam Chen",
+    "status": "Draft",
+    "updated": "2026-10-21"
+  },
+  {
+    "id": "WK-006",
+    "name": "Release notes",
+    "category": "Document",
+    "owner": "Jamie Lee",
+    "status": "Ready",
+    "updated": "2026-10-20"
+  },
+  {
+    "id": "WK-007",
+    "name": "Archive index",
+    "category": "Reference",
+    "owner": "Alex Morgan",
+    "status": "Archived",
+    "updated": "2026-10-18"
+  },
+  {
+    "id": "WK-008",
+    "name": "Meeting template",
+    "category": "Document",
+    "owner": "Sam Chen",
+    "status": "Ready",
+    "updated": "2026-10-17"
+  }
+]

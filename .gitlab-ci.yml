@@ -1,0 +1,26 @@
+image: node:22-bookworm
+
+stages:
+  - verify
+
+verify:
+  stage: verify
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  script:
+    - npm ci --cache .npm --prefer-offline --no-fund
+    - npx playwright install --with-deps chromium
+    - npm run check
+  artifacts:
+    when: always
+    expire_in: 7 days
+    paths:
+      - dist/
+      - playwright-report/
+      - test-results/
+    reports:
+      junit: test-results/junit.xml

@@ -1,0 +1,23 @@
+/* Semantic tokens. Components never select a theme or contain palette values. */
+:root {
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-mono: Consolas, monospace;
+  --text-xs: 10px;
+  --text-sm: 11px;
+  --text-base: 13px;
+  --text-lg: 16px;
+  --text-title: 24px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 28px;
+  --space-7: 40px;
+  --radius: 2px;
+  --border-width: 1px;
+  --sidebar-width: 224px;
+  --control-height: 32px;
+  --focus-width: 2px;
+  --disabled-opacity: 0.45;
+}

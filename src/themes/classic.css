@@ -1,0 +1,45 @@
+:root,
+:root[data-theme="classic"] {
+  color-scheme: light;
+  --font-body: Arial, Helvetica, sans-serif;
+  --radius: 2px;
+  --surface: #fff;
+  --workspace: #fff;
+  --panel: #f3f4f5;
+  --sidebar: #f5f5f4;
+  --heading: #f6f6f5;
+  --ink: #252a30;
+  --muted: #606a73;
+  --line: #d1d5d8;
+  --border: #aab1b8;
+  --accent: #246394;
+  --link: #195d91;
+  --hover: #eaf0f5;
+  --selected: #dfeaf3;
+  --selected-ink: #183e5c;
+  --header: #30353b;
+  --header-ink: #f4f5f6;
+  --header-line: #555d65;
+  --header-hover: #4b535c;
+  --header-rule: #98483f;
+  --header-focus: #e7bd73;
+  --brand: #944237;
+  --brand-line: #bd7167;
+  --brand-ink: #fff8ef;
+  --button: linear-gradient(#fff, #e9ebed);
+  --button-ink: #252a30;
+  --button-hover: #e2e8ed;
+  --primary: #246394;
+  --primary-ink: #fff;
+  --primary-hover: #194f79;
+  --table-head: #e9ecee;
+  --table-stripe: #f7f8f8;
+  --success: #287243;
+  --success-bg: #f3f8f4;
+  --warning: #80581a;
+  --warning-bg: #fff8ec;
+  --danger: #a43b32;
+  --danger-bg: #fff1ee;
+  --status-bg: #f0f1ef;
+  --shadow-menu: 2px 3px 8px #0002;
+}
